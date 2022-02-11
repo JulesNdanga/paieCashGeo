@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Compte{% endblock %}
+
+{% block body %}
+   <h1>Mon Compte</h1>
+    {% if app.user %}
+        <div class="mb-3">
+            Bienvenue <strong>{{ app.user.firstname }}</strong> sur votre compte.
+            <a href="{{ path('app_logout') }}">Deconnexion</a>
+        </div>
+    {% endif %}
+    
+   <h2>Liste des Revendeurs proches de vous</h1>
+    {% for resellers in resellers %}
+     
+       <div class="container">
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th>Nom Revendeurs</th>
+                <th>Distance(KM)</th>
+                <th>Contact</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ resellers.firstname }}</td>
+                <td>---</td>
+                <td>---</td>
+            </tr>
+           
+            </tbody>
+        </table>
+        </div>
+
+
+    {% endfor %}
+
+   {# {{ dump (app.user)}} #}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Incription{% endblock %}
+
+{% block body %}
+   <h1>Incription</h1>
+<div class="alert alert-danger" role="alert">
+	!!!! INFOS !!!
+    Vous devez êtres connecté à internet pour tester ceci,
+    Vu que l'Api de geolocalisation est en ligne
+</div>
+
+
+   {{form(form)}}
+   <a href="/connexion" class="btn btn-primary btn-sn">Se Coonecter</a>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+	$.ajax({
+        url: "https://geolocation-db.com/jsonp",
+        jsonpCallback: "callback",
+        dataType: "jsonp",
+        success: function (location) {
+            $('#register_country').val(location.country_name);
+            $('#register_state').val(location.state);
+            $('#register_city').val(location.city);
+            $('#register_latitude').val(location.latitude);
+            $('#register_longitude').val(location.longitude);
+            $('#register_adress_ip').val(location.IPv4);
+
+        }
+    });
+</script>
+
+
+{% endblock %}
